@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArrTest 1`] = `
+Array [
+  <p>
+    2
+  </p>,
+  <p>
+    4
+  </p>,
+  <p>
+    6
+  </p>,
+  <p>
+    8
+  </p>,
+]
+`;
+
+exports[`ArrTest 2`] = `
+Array [
+  <p>
+    2
+  </p>,
+  <p>
+    4
+  </p>,
+  <p>
+    8
+  </p>,
+  <p>
+    8
+  </p>,
+]
+`;
+
+exports[`Test 1`] = `
+Array [
+  <p>
+    1
+  </p>,
+  <p>
+    1
+     
+    Hello World
+  </p>,
+]
+`;
+
+exports[`Test 2`] = `
+Array [
+  <p>
+    1
+  </p>,
+  <p>
+    2
+     
+    Hello World!
+  </p>,
+]
+`;
+
+exports[`Test 3`] = `
+Array [
+  <p>
+    2
+  </p>,
+  <p>
+    1
+     
+    6
+  </p>,
+]
+`;
+
+exports[`Test 4`] = `
+Array [
+  <p>
+    2
+  </p>,
+  <p>
+    2
+     
+    8
+  </p>,
+]
+`;
