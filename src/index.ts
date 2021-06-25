@@ -14,16 +14,30 @@ export const useStayt = <T>(state: Stayt<T>) => {
     return value
 }
 
+export const useOptionStayt = <T>(state: Stayt<T | null>) => {
+    const [isNull, setIsNull] = useState(() => state.get() === null)
+    const option = useMemo(() => state.option(), [state])
+    useEffect(() => {
+        const isNull2 = state.get() === null
+        if(isNull2 !== isNull)
+            setIsNull(isNull2)
+        const fn = (n: boolean) => setIsNull(n)
+        state.subscribeNull(fn)
+        return () => state.unsubscribeNull(fn)
+    }, [state])
+    return isNull ? null : option
+}
+
 type Narrow<T, N> = T extends { kind: N } ? T : never;
 
-export const useOptionStayt = <T>(state: Stayt<T>) => {
-    const value = useStayt(state)
-    const option = useMemo(() => state.option(), [state])
-    if(value !== null)
-        return option
-    else
-        return null
-}
+// export const useOptionStayt = <T>(state: Stayt<T>) => {
+//     const value = useStayt(state)
+//     const option = useMemo(() => state.option(), [state])
+//     if(value !== null)
+//         return option
+//     else
+//         return null
+// }
 
 type MapDisc<T, U extends T[keyof T & "kind"]> = U extends unknown ? {kind: U, state: Stayt<Narrow<T,U>>} : undefined
 

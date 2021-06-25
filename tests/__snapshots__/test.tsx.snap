@@ -34,6 +34,16 @@ Array [
 ]
 `;
 
+exports[`OptTest 1`] = `<div />`;
+
+exports[`OptTest 2`] = `
+<p>
+  10
+</p>
+`;
+
+exports[`OptTest 3`] = `<div />`;
+
 exports[`Test 1`] = `
 Array [
   <p>

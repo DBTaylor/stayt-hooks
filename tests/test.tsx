@@ -80,3 +80,28 @@ const {act} = renderer
     })
 
 }
+{
+    const Num = ({v}: {v: Stayt<number>}) => {
+        const n = useStayt(v)
+        return <p>{n + n}</p>
+    }
+    const Test = ({v}: {v: Stayt<number | null>}) => {
+        const val = useOptionStayt(v)
+        return val ? <Num v={val}/> : <div></div>
+    }
+    const state: Stayt<number | null> = new Stayt(null)
+    test('OptTest', async () => {
+        const component = renderer.create(
+            <Test v={state}/>,
+        );
+        let tree = component.toJSON()
+        expect(tree).toMatchSnapshot()
+        act(() => state.modify(n => 5))
+        tree = component.toJSON()
+        expect(tree).toMatchSnapshot()
+        act(() => state.modify(n => null))
+        tree = component.toJSON()
+        expect(tree).toMatchSnapshot()
+    })
+
+}
