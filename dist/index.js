@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.useArrStayt = exports.useDiscStayt = exports.useOptionStayt = exports.useStayt = void 0;
 const react_1 = require("react");
-exports.useStayt = (state) => {
+const useStayt = (state) => {
     const [value, setValue] = react_1.useState(() => state.get());
     react_1.useEffect(() => {
         const v = state.get();
@@ -13,20 +14,28 @@ exports.useStayt = (state) => {
     }, [state]);
     return value;
 };
-exports.useOptionStayt = (state) => {
-    const value = exports.useStayt(state);
+exports.useStayt = useStayt;
+const useOptionStayt = (state) => {
+    const [isNull, setIsNull] = react_1.useState(() => state.get() === null);
     const option = react_1.useMemo(() => state.option(), [state]);
-    if (value !== null)
-        return option;
-    else
-        return null;
+    react_1.useEffect(() => {
+        const isNull2 = state.get() === null;
+        if (isNull2 !== isNull)
+            setIsNull(isNull2);
+        const fn = (n) => setIsNull(n);
+        state.subscribeNull(fn);
+        return () => state.unsubscribeNull(fn);
+    }, [state]);
+    return isNull ? null : option;
 };
-exports.useDiscStayt = (state) => {
+exports.useOptionStayt = useOptionStayt;
+const useDiscStayt = (state) => {
     const kindStayt = react_1.useMemo(() => state.prop("kind"), [state]);
     const kind = exports.useStayt(kindStayt);
     return react_1.useMemo(() => ({ kind, state: state.disc(kind) }), [kind]);
 };
-exports.useArrStayt = (state) => {
+exports.useDiscStayt = useDiscStayt;
+const useArrStayt = (state) => {
     const len = exports.useStayt(state.prop("length"));
     return react_1.useMemo(() => {
         const arr = Array(len);
@@ -36,3 +45,4 @@ exports.useArrStayt = (state) => {
         return arr;
     }, [len]);
 };
+exports.useArrStayt = useArrStayt;

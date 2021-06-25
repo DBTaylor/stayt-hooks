@@ -89,7 +89,8 @@ const {act} = renderer
         const val = useOptionStayt(v)
         return val ? <Num v={val}/> : <div></div>
     }
-    const state: Stayt<number | null> = new Stayt(null)
+    const st = new Stayt({x: null} as {x: null | number})
+    const state = st.prop("x")
     test('OptTest', async () => {
         const component = renderer.create(
             <Test v={state}/>,

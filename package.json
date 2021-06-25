@@ -1,6 +1,6 @@
 {
   "name": "stayt-hooks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {
-    "stayt": "^0.0.5",
+    "stayt": "^0.0.6",
     "react": "^16.13.1"
   },
   "devDependencies": {
@@ -27,6 +27,6 @@
     "jest": "^26.2.2",
     "react": "^16.13.1",
     "react-test-renderer": "^16.13.1",
-    "stayt": "0.0.5"
+    "stayt": "0.0.6"
   }
 }
